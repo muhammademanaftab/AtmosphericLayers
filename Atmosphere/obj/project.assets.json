@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Muhammad Eman Aftab\\Downloads\\OOP Assignment\\Atmosphere\\Atmosphere_prj.csproj",
+      "projectUniqueName": "C:\\Users\\Muhammad Eman Aftab\\Downloads\\OOP Assignment - Copy\\Atmosphere\\Atmosphere_prj.csproj",
       "projectName": "Atmosphere_prj",
-      "projectPath": "C:\\Users\\Muhammad Eman Aftab\\Downloads\\OOP Assignment\\Atmosphere\\Atmosphere_prj.csproj",
+      "projectPath": "C:\\Users\\Muhammad Eman Aftab\\Downloads\\OOP Assignment - Copy\\Atmosphere\\Atmosphere_prj.csproj",
       "packagesPath": "C:\\Users\\Muhammad Eman Aftab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Muhammad Eman Aftab\\Downloads\\OOP Assignment\\Atmosphere\\obj\\",
+      "outputPath": "C:\\Users\\Muhammad Eman Aftab\\Downloads\\OOP Assignment - Copy\\Atmosphere\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Muhammad Eman Aftab\\AppData\\Roaming\\NuGet\\NuGet.Config",

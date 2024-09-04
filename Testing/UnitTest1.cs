@@ -1,4 +1,5 @@
 using Atmosphere_prj;
+using System.Reflection.Emit;
 using TextFile;
 namespace Testing
 {
@@ -16,8 +17,6 @@ namespace Testing
             Assert.ThrowsException<Atmosphere.LayerCountZero>(() => new Atmosphere(ref reader));
 
         }
-
-
         [TestMethod]
         public void OneLayerTestingSingleSimulate()
         {
@@ -34,8 +33,6 @@ namespace Testing
             Assert.AreEqual(expOut2,atmosphere.getState(atmosphere.getLayersCount));
             
         }
-
-
         [TestMethod]
         public void OneLayeronZeroATMVTesting()
         {
@@ -51,8 +48,6 @@ namespace Testing
             //Because Others Donot effect the C.
             Assert.AreEqual(expOut2, atmosphere.getState(atmosphere.getLayersCount));
         }
-
-
 
         [TestMethod]
         public void OneLayerTestingOverMain()
@@ -74,9 +69,6 @@ namespace Testing
             Assert.AreEqual(expOut1, atmosphere.getState(atmosphere.getLayersCount));
         }
 
-
-
-
         [TestMethod]
         public void MultiLayerTesting()
         {
@@ -95,8 +87,6 @@ namespace Testing
             Assert.AreEqual(expOut2, atmosphere.getState(atmosphere.getLayersCount));
 
         }
-
-
         [TestMethod]
         public void MultiLayerTestingOverMain()
         {            
@@ -114,6 +104,73 @@ namespace Testing
             }
 
             Assert.AreEqual(expOut1, atmosphere.getState(atmosphere.getLayersCount));
+        }
+
+        [TestMethod]
+        public void TestingSimulateWhenSimulationPerformed() 
+        {
+            string filename = "input.txt";
+            TextFileReader reader = new TextFileReader(filename);
+
+            Atmosphere atmosphere = new Atmosphere(ref reader);
+
+            //Getting the State at 0 position
+            string expOut1 = atmosphere.getState(0);
+
+            atmosphere.simulate();
+
+
+            //Çhecking that state should be not equal to previous state after simulating
+            Assert.AreNotEqual(expOut1, atmosphere.getState(0));
+
+        }
+        [TestMethod]
+        public void TestSimulateWhenNoSimulationPerformed()
+        {
+            string filename = "input2.txt";
+            TextFileReader reader = new TextFileReader(filename);
+            Atmosphere atmosphere = new Atmosphere(ref reader);
+
+            string initialState = atmosphere.getState(0);
+            // No simulation performed
+            string newState = atmosphere.getState(0);
+
+            // Check that the state remains the same when no Simulation is Performed
+            Assert.AreEqual(initialState, newState);
+        }
+
+        public void TestingGetStateFunctionOnInitialInput()
+        {
+
+            string filename = "input2.txt";
+            TextFileReader reader = new TextFileReader(filename);
+            Atmosphere atmosphere = new Atmosphere(ref reader);
+            string expOut1 = "Simulation Round 0:\nZ 5\n";
+
+
+            //Checking that get State, giving the output Correct or not.
+            Assert.AreEqual(expOut1, atmosphere.getState(0));
+
+        }
+        [TestMethod]
+        public void TestingGetStateFunctionWithMultipleLayers()
+        {
+            string filename = "input.txt";
+            TextFileReader reader = new TextFileReader(filename);
+            Atmosphere atmosphere = new Atmosphere(ref reader);
+
+            // Expected output after the initial Simulation
+            string expOut1 = "Simulation Round 0:\nZ 5\nX 0.8\nC 3\nX 4\n";
+            Assert.AreEqual(expOut1, atmosphere.getState(0));
+            //Runnign the Loop
+            for (int i = 1; i <= 4; i++)
+            {
+                atmosphere.simulate();
+            }
+
+            // Expected output after multiple simulations
+            string expOut2 = "Simulation Round 4:\nZ 4.07253125\nX 0.52488\nC 4.3755999999999995\nX 2.6244000000000005\n";
+            Assert.AreEqual(expOut2, atmosphere.getState(atmosphere.getLayersCount));
         }
 
     }
